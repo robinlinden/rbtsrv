@@ -1,5 +1,9 @@
+import com.google.protobuf.gradle.*
+
 plugins {
     kotlin("jvm") version "1.3.61"
+    idea
+    id("com.google.protobuf") version "0.8.10"
 }
 
 group = "ltd.evilcorp"
@@ -11,6 +15,13 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+
+    compile("io.grpc:grpc-netty-shaded:1.25.0")
+    compile("io.grpc:grpc-stub:1.25.0")
+    compile("io.grpc:grpc-protobuf:1.25.0")
+
+    // Generated code in grpc needs this.
+    compile("javax.annotation:javax.annotation-api:1.3.1")
 }
 
 tasks {
@@ -19,5 +30,23 @@ tasks {
     }
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.10.0"
+    }
+    plugins {
+        id("grpc") {
+            artifact = "io.grpc:protoc-gen-grpc-java:1.25.0"
+        }
+    }
+    generateProtoTasks {
+        ofSourceSet("main").forEach {
+            it.plugins {
+                id("grpc")
+            }
+        }
     }
 }
