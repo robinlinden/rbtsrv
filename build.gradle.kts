@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm") version "1.3.61"
     idea
     id("com.google.protobuf") version "0.8.10"
+    id("com.github.ben-manes.versions") version "0.27.0"
 }
 
 group = "ltd.evilcorp"
@@ -30,6 +31,12 @@ tasks {
     }
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
+    }
+}
+
+buildscript {
+    dependencies {
+        classpath("com.github.ben-manes:gradle-versions-plugin:0.27.0")
     }
 }
 
