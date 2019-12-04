@@ -22,7 +22,7 @@ dependencies {
     implementation("io.grpc:grpc-protobuf:1.25.0")
 
     // Generated code in grpc needs this.
-    implementation("javax.annotation:javax.annotation-api:1.3.1")
+    implementation("javax.annotation:javax.annotation-api:1.3.2")
 }
 
 tasks {
@@ -42,7 +42,7 @@ buildscript {
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:3.10.0"
+        artifact = "com.google.protobuf:protoc:3.11.1"
     }
     plugins {
         id("grpc") {
