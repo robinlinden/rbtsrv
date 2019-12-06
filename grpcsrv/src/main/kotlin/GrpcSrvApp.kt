@@ -1,9 +1,9 @@
 import io.grpc.ServerBuilder
 import io.grpc.stub.StreamObserver
 import io.nats.client.*
-import ltd.evilcorp.rbtsrv.GreeterGrpc
-import ltd.evilcorp.rbtsrv.HelloReply
-import ltd.evilcorp.rbtsrv.HelloRequest
+import ltd.evilcorp.rbtsrv.grpcsrv.GreeterGrpc
+import ltd.evilcorp.rbtsrv.grpcsrv.HelloReply
+import ltd.evilcorp.rbtsrv.grpcsrv.HelloRequest
 import java.lang.Exception
 
 class GreeterImpl : GreeterGrpc.GreeterImplBase() {
