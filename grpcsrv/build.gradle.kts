@@ -6,12 +6,7 @@ plugins {
     id("com.google.protobuf") version "0.8.10"
 }
 
-group = "ltd.evilcorp"
 version = "0.1.0"
-
-repositories {
-    mavenCentral()
-}
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
@@ -26,15 +21,6 @@ dependencies {
 
     // NATS
     implementation("io.nats:jnats:2.6.6")
-}
-
-tasks {
-    compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
-    }
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
-    }
 }
 
 protobuf {
