@@ -9,4 +9,7 @@ dependencies {
 
     // OPC
     implementation("org.eclipse.milo:sdk-server:0.3.6")
+
+    // NATS
+    implementation("io.nats:jnats:2.6.6")
 }
