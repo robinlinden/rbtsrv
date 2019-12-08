@@ -8,15 +8,13 @@ import org.eclipse.milo.opcua.sdk.server.nodes.UaNode
 import org.eclipse.milo.opcua.sdk.server.nodes.UaVariableNode
 import org.eclipse.milo.opcua.sdk.server.util.SubscriptionModel
 import org.eclipse.milo.opcua.stack.core.Identifiers
-import org.eclipse.milo.opcua.stack.core.types.builtin.DataValue
 import org.eclipse.milo.opcua.stack.core.types.builtin.LocalizedText
 import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId
-import org.eclipse.milo.opcua.stack.core.types.builtin.Variant
 
 class SomeNamespace(server: OpcUaServer) : ManagedNamespace(server, "urn:evilcorp:rbtsrv") {
     private val subscriptionModel = SubscriptionModel(server, this)
 
-    private fun createFolder(nodePath: String) {
+    fun createFolder(nodePath: String) {
         val segments = nodePath.split('/')
         val nodeName = segments.last()
         val folderNodeId: NodeId = newNodeId(nodePath)
@@ -30,7 +28,7 @@ class SomeNamespace(server: OpcUaServer) : ManagedNamespace(server, "urn:evilcor
         addNode(folderNode)
     }
 
-    private fun createStringNode(nodeId: String): UaVariableNode {
+    fun createStringNode(nodeId: String): UaVariableNode {
         val segments = nodeId.split('/')
         val nodeName = segments.last()
 
@@ -57,18 +55,6 @@ class SomeNamespace(server: OpcUaServer) : ManagedNamespace(server, "urn:evilcor
         }
 
         node.addReference(Reference(node.nodeId, Identifiers.Organizes, parentNode, false))
-    }
-
-    override fun onStartup() {
-        super.onStartup()
-
-        createFolder("Test")
-        createFolder("Test/Test")
-        createFolder("Test/Test/MoreTest")
-        createFolder("Test/SomeNode")
-        createStringNode("SomeRootNode").value = DataValue(Variant("Root node"))
-        createStringNode("Test/Name").value = DataValue(Variant("Robotto"))
-        createStringNode("Test/Test/MoreTest/Magic").value = DataValue(Variant("beep beep boop"))
     }
 
     override fun onDataItemsDeleted(dataItems: MutableList<DataItem>?) =

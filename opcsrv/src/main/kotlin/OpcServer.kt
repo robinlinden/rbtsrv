@@ -14,8 +14,16 @@ class OpcServer {
     private val server = OpcUaServer(config)
     private val namespace = SomeNamespace(server)
 
-    fun start() {
+    init {
         server.startup().get()
         namespace.startup()
     }
+
+    fun shutdown() {
+        namespace.shutdown()
+        server.shutdown()
+    }
+
+    fun createFolder(folderPath: String) = namespace.createFolder(folderPath)
+    fun createStringNode(nodePath: String) = namespace.createStringNode(nodePath)
 }
