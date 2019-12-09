@@ -1,3 +1,5 @@
+package ltd.evilcorp.rbtsrv.common
+
 import io.nats.client.*
 
 class NatsConnection(

@@ -1,3 +1,5 @@
+package ltd.evilcorp.rbtsrv.grpcsrv
+
 import io.grpc.ServerBuilder
 
 class GreeterServer {

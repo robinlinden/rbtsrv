@@ -1,7 +1,7 @@
+package ltd.evilcorp.rbtsrv.grpcsrv
+
 import io.grpc.stub.StreamObserver
-import ltd.evilcorp.rbtsrv.grpcsrv.GreeterGrpc
-import ltd.evilcorp.rbtsrv.grpcsrv.HelloReply
-import ltd.evilcorp.rbtsrv.grpcsrv.HelloRequest
+import ltd.evilcorp.rbtsrv.common.NatsConnection
 
 class GreeterImpl : GreeterGrpc.GreeterImplBase() {
     private val nats = NatsConnection()

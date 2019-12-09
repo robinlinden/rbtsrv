@@ -1,3 +1,6 @@
+package ltd.evilcorp.rbtsrv.opcsrv
+
+import ltd.evilcorp.rbtsrv.common.NatsConnection
 import org.eclipse.milo.opcua.stack.core.types.builtin.DataValue
 import org.eclipse.milo.opcua.stack.core.types.builtin.Variant
 import java.util.concurrent.CompletableFuture

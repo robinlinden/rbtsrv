@@ -1,3 +1,5 @@
+package ltd.evilcorp.rbtsrv.opcsrv
+
 import org.eclipse.milo.opcua.sdk.core.Reference
 import org.eclipse.milo.opcua.sdk.server.OpcUaServer
 import org.eclipse.milo.opcua.sdk.server.api.DataItem
