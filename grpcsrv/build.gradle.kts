@@ -9,18 +9,15 @@ plugins {
 version = "0.1.0"
 
 dependencies {
+    implementation(project(":common"))
+
     implementation(kotlin("stdlib-jdk8"))
 
     // grpc/protobuf
     implementation("io.grpc:grpc-netty-shaded:1.25.0")
     implementation("io.grpc:grpc-stub:1.25.0")
     implementation("io.grpc:grpc-protobuf:1.25.0")
-
-    // Generated code in grpc needs this.
     implementation("javax.annotation:javax.annotation-api:1.3.2")
-
-    // NATS
-    implementation("io.nats:jnats:2.6.6")
 }
 
 protobuf {
