@@ -1,11 +1,9 @@
 package ltd.evilcorp.rbtsrv.grpcsrv
 
 import io.grpc.stub.StreamObserver
-import ltd.evilcorp.rbtsrv.common.NatsConnection
+import io.nats.client.Connection
 
-class GreeterImpl : GreeterGrpc.GreeterImplBase() {
-    private val nats = NatsConnection()
-
+class GreeterImpl(private val nats: Connection) : GreeterGrpc.GreeterImplBase() {
     override fun sayHello(r: HelloRequest, responseObserver: StreamObserver<HelloReply>) {
         val reply = HelloReply.newBuilder().setMessage("Hello ${r.name}.").build()
         responseObserver.onNext(reply)

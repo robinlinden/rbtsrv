@@ -18,6 +18,9 @@ dependencies {
     implementation("io.grpc:grpc-stub:1.25.0")
     implementation("io.grpc:grpc-protobuf:1.25.0")
     implementation("javax.annotation:javax.annotation-api:1.3.2")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.5.2")
+    testImplementation("io.mockk:mockk:1.9.3")
 }
 
 protobuf {
@@ -35,5 +38,12 @@ protobuf {
                 id("grpc")
             }
         }
+    }
+}
+
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
     }
 }
