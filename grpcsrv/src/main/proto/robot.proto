@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ltd.evilcorp.rbtsrv.grpcsrv";
+option java_outer_classname = "RobotProto";
+
+package robot;
+
+service RobotService {
+  rpc Add (RobotInfo) returns (Nothing) {}
+}
+
+message RobotInfo {
+  string id = 1;
+}
+
+message Nothing {}

@@ -1,6 +1,6 @@
 package ltd.evilcorp.rbtsrv.grpcsrv
 
 fun main() {
-    val server = GreeterServer()
+    val server = GrpcServer()
     server.awaitDeath()
 }

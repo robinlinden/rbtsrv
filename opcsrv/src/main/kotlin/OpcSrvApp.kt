@@ -6,13 +6,18 @@ import org.eclipse.milo.opcua.stack.core.types.builtin.Variant
 import java.util.concurrent.CompletableFuture
 
 fun main() {
-    val opcServer = OpcServer()
-    val nameNode = opcServer.createStringNode("Name")
+    val opcServer = OpcServer().apply {
+        createFolder("robots")
+    }
 
     val nats = NatsConnection()
     val dispatcher = nats.createDispatcher {}
-    dispatcher.subscribe("greeting") {
-        nameNode.value = DataValue(Variant(String(it.data)))
+
+    dispatcher.subscribe("robots") {
+        val robotFolder = "robots/${String(it.data)}"
+        opcServer.createFolder(robotFolder)
+        val robotIdNode = opcServer.createStringNode("${robotFolder}/id")
+        robotIdNode.value = DataValue(Variant(String(it.data)))
     }
 
     val future = CompletableFuture<Void?>()
