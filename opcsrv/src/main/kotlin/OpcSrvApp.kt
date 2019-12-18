@@ -7,16 +7,16 @@ import java.util.concurrent.CompletableFuture
 
 fun main() {
     val opcServer = OpcServer().apply {
-        createFolder("robots")
+        createFolder("Robots")
     }
 
     val nats = NatsConnection()
     val dispatcher = nats.createDispatcher {}
 
     dispatcher.subscribe("robots") {
-        val robotFolder = "robots/${String(it.data)}"
+        val robotFolder = "Robots/${String(it.data)}"
         opcServer.createFolder(robotFolder)
-        val robotIdNode = opcServer.createStringNode("${robotFolder}/id")
+        val robotIdNode = opcServer.createStringNode("${robotFolder}/Id")
         robotIdNode.value = DataValue(Variant(String(it.data)))
     }
 
