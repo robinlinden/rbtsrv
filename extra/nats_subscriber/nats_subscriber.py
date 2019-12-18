@@ -15,12 +15,17 @@ async def run(loop):
         data = msg.data.decode()
         print(f"Received a message on '{subject}': {data}", flush=True)
 
-    sid = await nc.subscribe("*", cb=message_handler)
-
-    await asyncio.sleep(30)
-
-    await nc.drain()
+    await nc.subscribe("*", cb=message_handler)
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(run(loop))
+
+try:
+    loop.run_forever()
+except KeyboardInterrupt:
+    pass
+
+pending = asyncio.Task.all_tasks()
+[task.cancel() for task in pending]
+loop.run_until_complete(asyncio.gather(*pending, return_exceptions=True))
 loop.close()
