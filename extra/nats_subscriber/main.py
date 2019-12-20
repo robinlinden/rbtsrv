@@ -15,7 +15,7 @@ async def run(loop):
         data = msg.data.decode()
         print(f"Received a message on '{subject}': {data}", flush=True)
 
-    await nc.subscribe("*", cb=message_handler)
+    await nc.subscribe(">", cb=message_handler)
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(run(loop))
