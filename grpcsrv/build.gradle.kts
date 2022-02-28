@@ -11,8 +11,6 @@ version = "0.1.0"
 dependencies {
     implementation(project(":common"))
 
-    implementation(kotlin("stdlib-jdk8"))
-
     // grpc/protobuf
     implementation("io.grpc:grpc-netty-shaded:1.25.0")
     implementation("io.grpc:grpc-stub:1.25.0")
